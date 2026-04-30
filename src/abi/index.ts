@@ -22,6 +22,20 @@ export const ROUTER_ABI = [
     outputs: [{ type: "uint256[]" }],
   },
   {
+    type: "function", name: "getAmountsIn", stateMutability: "view",
+    inputs: [{ type: "uint256", name: "amountOut" }, { type: "address[]", name: "path" }],
+    outputs: [{ type: "uint256[]" }],
+  },
+  {
+    type: "function", name: "quote", stateMutability: "pure",
+    inputs: [
+      { type: "uint256", name: "amountA" },
+      { type: "uint256", name: "reserveA" },
+      { type: "uint256", name: "reserveB" },
+    ],
+    outputs: [{ type: "uint256" }],
+  },
+  {
     type: "function", name: "swapExactTokensForTokens", stateMutability: "nonpayable",
     inputs: [
       { type: "uint256", name: "amountIn" },
@@ -82,6 +96,21 @@ export const ROUTER_ABI = [
       { type: "address" }, { type: "uint256" },
     ],
     outputs: [{ type: "uint256" }, { type: "uint256" }],
+  },
+  {
+    type: "function", name: "removeLiquidityPROS", stateMutability: "nonpayable",
+    inputs: [
+      { type: "address", name: "token" },
+      { type: "uint256", name: "liquidity" },
+      { type: "uint256", name: "amountTokenMin" },
+      { type: "uint256", name: "amountPROSMin" },
+      { type: "address", name: "to" },
+      { type: "uint256", name: "deadline" },
+    ],
+    outputs: [
+      { type: "uint256", name: "amountToken" },
+      { type: "uint256", name: "amountPROS" },
+    ],
   },
 ] as const;
 
