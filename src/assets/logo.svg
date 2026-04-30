@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" role="img" aria-label="Spark DEX">
+  <defs>
+    <!-- Spark glyph gradient: deep orange → pink → electric blue -->
+    <linearGradient id="sparkGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"  stop-color="#FF7A00"/>
+      <stop offset="55%" stop-color="#FF2D78"/>
+      <stop offset="100%" stop-color="#7C5CFF"/>
+    </linearGradient>
+    <linearGradient id="sparkGradAlt" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%"  stop-color="#FF2D78"/>
+      <stop offset="100%" stop-color="#FFB347"/>
+    </linearGradient>
+
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="1.6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/><feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- 4-pointed spark shape -->
+    <symbol id="sparkGlyph" viewBox="-32 -32 64 64">
+      <path
+        fill="url(#sparkGrad)"
+        d="M0 -28
+           C 4 -10, 10 -4, 28 0
+           C 10 4, 4 10, 0 28
+           C -4 10, -10 4, -28 0
+           C -10 -4, -4 -10, 0 -28 Z"/>
+      <!-- inner highlight -->
+      <path
+        fill="url(#sparkGradAlt)" opacity=".55"
+        d="M0 -16 C 2 -6, 6 -2, 16 0 C 6 2, 2 6, 0 16 C -2 6, -6 2, -16 0 C -6 -2, -2 -6, 0 -16 Z"/>
+    </symbol>
+
+    <style>
+      .pulse { transform-origin: 32px 32px; animation: pulse 2.6s ease-in-out infinite; }
+      .rot   { transform-origin: 32px 32px; animation: rot 14s linear infinite; }
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 rgba(255,45,120,0)); }
+        50%      { transform: scale(1.06); filter: drop-shadow(0 0 6px rgba(255,122,0,.45)); }
+      }
+      @keyframes rot { to { transform: rotate(360deg); } }
+      .word { font: 700 30px/1 "Space Grotesk", "Inter", system-ui, sans-serif; letter-spacing: -0.01em; fill: #fff; }
+      .accent { fill: url(#sparkGrad); }
+      @media (prefers-reduced-motion: reduce) {
+        .pulse, .rot { animation: none; }
+      }
+    </style>
+  </defs>
+
+  <!-- Logo mark -->
+  <g class="rot" filter="url(#glow)">
+    <g class="pulse">
+      <use href="#sparkGlyph" x="0" y="0" width="64" height="64"/>
+    </g>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(76, 0)">
+    <text class="word" x="0" y="42">spark<tspan class="accent" dx="2">.</tspan></text>
+    <text x="0" y="58" font="500 11px/1 'Space Grotesk', system-ui, sans-serif" fill="#9aa3b2" font-size="11" letter-spacing="0.18em" font-family="'Space Grotesk', system-ui">DEX · PHAROS</text>
+  </g>
+</svg>
